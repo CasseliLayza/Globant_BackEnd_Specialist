@@ -1,4 +1,4 @@
-package dao.repository;
+package dao.repository.ext;
 
 import dao.entity.Cliente;
 import dao.repository.DAO;
@@ -34,6 +34,7 @@ public class ClienteDAO extends DAO {
             cliente.setApellidoContacto(resultSet.getString("apellido_contacto"));
             clientes.add(cliente);
         }
+
         return clientes;
     }
     public void eliminarClientePorId(int id) throws Exception {
