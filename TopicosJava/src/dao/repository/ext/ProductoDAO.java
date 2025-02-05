@@ -26,6 +26,39 @@ public class ProductoDAO extends DAO {
 
     }
 
+    public Producto registrarProducto(Producto producto) throws Exception {
+        String sql = "INSERT INTO producto (id_producto, codigo_producto, nombre, id_gama, cantidad_en_stock, precio_venta) VALUES ('"
+
+                + producto.getIdProducto() + "', '"
+                + producto.getCodigoProducto() + "', '"
+                + producto.getNombre() + "', '"
+                + producto.getIdGama() + "', '"
+                + producto.getCantidadEnStock() + "', '"
+                + producto.getPrecioVenta() + "')";
+        insertarModificarEliminarDataBase(sql);
+
+        return buscarProducto(producto.getIdProducto());
+
+
+    }
+
+    public Producto buscarProducto(int idProducto) throws Exception {
+        String sql = "SELECT id_producto, codigo_producto, nombre, id_gama, cantidad_en_stock, precio_venta FROM producto WHERE id_producto=" + idProducto;
+        consultarDataBase(sql);
+        Producto producto = new Producto();
+        while (resultSet.next()) {
+            producto.setIdProducto(resultSet.getInt("id_producto"));
+            producto.setCodigoProducto(resultSet.getString("codigo_producto"));
+            producto.setNombre(resultSet.getString("nombre"));
+            producto.setIdGama(resultSet.getInt("id_gama"));
+            producto.setCantidadEnStock(resultSet.getInt("cantidad_en_stock"));
+            producto.setPrecioVenta(resultSet.getDouble("precio_venta"));
+        }
+
+        return producto;
+
+    }
+
     public void deleteProducto(int idProducto) throws Exception {
         String sql = "DELETE FROM producto WHERE id_producto = " + idProducto;
         insertarModificarEliminarDataBase(sql);

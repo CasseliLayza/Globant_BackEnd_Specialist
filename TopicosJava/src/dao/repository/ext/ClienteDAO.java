@@ -23,6 +23,7 @@ public class ClienteDAO extends DAO {
                 + cliente.getPais() + "')";
         insertarModificarEliminarDataBase(sql);
     }
+
     public List<Cliente> listarTodosLosClientes() throws Exception {
         String sql = "SELECT id_cliente, nombre_cliente, apellido_contacto FROM cliente";
         consultarDataBase(sql);
@@ -37,6 +38,7 @@ public class ClienteDAO extends DAO {
 
         return clientes;
     }
+
     public void eliminarClientePorId(int id) throws Exception {
         String sql = "DELETE FROM clientes WHERE id = " + id;
         insertarModificarEliminarDataBase(sql);
